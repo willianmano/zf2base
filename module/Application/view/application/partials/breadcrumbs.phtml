@@ -1,0 +1,18 @@
+<ol class="breadcrumb">
+    <?php
+        // iterate through the pages
+        foreach ($this->pages as $key => $page) {
+            if ($key < count($this->pages) - 1) {
+                echo "<li>";
+                if ($key == 0) {
+                    echo "<i class='fa fa-home'></i> ";
+                }
+                echo "<a href='". $page->getHref()."'>".$page->getLabel()."</a>";
+                echo "<span class='divider'></span>";
+            } else {
+                echo "<li class='active'>".$page->getLabel();
+            }
+            echo "</li>";
+        }
+    ?>
+</ol>

@@ -1,0 +1,77 @@
+body {
+    /*padding-top: 60px;*/
+    padding-bottom: 40px;
+}
+.nav-sidebar > .active > a {
+  color: #fff;
+  background-color: #428bca;
+}
+.nav-sidebar > .active > a:hover {
+  color: #428bca;
+}
+p.flashmessages{
+  padding: 15px;
+}
+.zf-green {
+    color: #68b604;
+}
+
+.btn-success {
+  background-color: #57a900;
+  background-image: -moz-linear-gradient(top, #70d900, #57a900);
+  background-image: -ms-linear-gradient(top, #70d900, #57a900);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
+  background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+  background-image: -o-linear-gradient(top, #70d900, #57a900);
+  background-image: linear-gradient(top, #70d900, #57a900);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  background-color: #57a900;
+}
+
+.btn-success:active, .btn-success.active {
+  background-color: #57a900;
+}
+
+div.container a.brand {
+    background: url("../img/zf2-logo.png") no-repeat scroll 0 10px transparent;
+    margin-left: 0;
+    padding: 8px 20px 12px 40px;
+}
+
+/* LOGIN */
+.login-wrapper .box{
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.65);
+  padding: 40px;
+}
+.login-wrapper .box .input-group {
+  margin-bottom: 15px;
+}
+.desktopIcons {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.alert-normal {
+  background-color: #f5f5f5;
+  border: none;
+}
+.error-block ul {
+  padding-left: 5px;
+  margin: 0;
+  background-color: #a94442;
+  color: #FFF;
+  font-size: 12px;
+}
+.error-block ul li{
+  list-style: none;
+}

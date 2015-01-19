@@ -1,0 +1,12 @@
+<div class="col-md-12">
+    <h3>Novo Módulo</h3>
+    <?php
+        echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('mod_id'));
+            echo $this->elementToRow($form->get('mod_nome'));
+            echo $this->elementToRow($form->get('mod_descricao'));
+            echo $this->elementToRow($form->get('mod_icone'));
+            echo $this->formSubmit($form->get('submit'));
+        echo $this->form()->closeTag();
+    ?>
+</div>

@@ -1,0 +1,44 @@
+<div id="modules" class="col-md-7">
+
+    <h2>Meus Aplicativos</h2>
+
+    <?php
+
+        if (sizeof($userModules) > 0) {
+            echo "<div class='row'>";
+            for ($i=0; $i < sizeof($userModules); $i++) { 
+                if ((($i+1) % 4) == 0)
+                {
+                    echo "</div>";
+                    echo "<div class='row'>";
+                }
+                $icon = $userModules[$i]['mod_icone']  != '' ? $userModules[$i]['mod_icone'] : 'icon-cog';
+
+                echo "<div class='col-md-3 col-md-offset-1'>";
+                echo   "<a href='".strtolower($userModules[$i]['mod_nome'])."' class='btn btn-app btn-primary no-radius'>";
+                echo     "<i class='fa ".$icon."'></i>";
+                echo     "<p>".$userModules[$i]['mod_nome']."</p>";
+                echo   "</a>";
+                echo "</div>";
+            }
+            echo "</div>";
+        } else {
+            echo "
+                <div class='row'>
+                    <div class='col-md-1 col-md-11 alert alert-info'>
+                        Você não possui aplicativos cadastrados.
+                    </div>
+                </div>";
+        }
+    ?>
+
+</div>
+
+<div class="col-md-5">
+    <h2>Mural de notícias</h2>
+    <h4 class="text-info">Notícia 1</h4>
+    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione eveniet ullam explicabo saepe distinctio provident? Aliquam, veniam, blanditiis, eveniet excepturi ad velit esse numquam in atque molestias consequatur non officiis?</p>
+
+    <h4 class="text-info">Notícia 2</h4>
+    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, dolor, molestiae esse numquam iure eveniet qui neque. Aliquid, veniam, expedita, optio unde necessitatibus minus placeat consequatur esse labore repellendus est?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, voluptatum, cumque perferendis adipisci officiis commodi aliquam neque quisquam hic reiciendis quod molestiae nam itaque illo blanditiis pariatur ea velit possimus.</p>
+</div>

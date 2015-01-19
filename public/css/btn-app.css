@@ -1,0 +1,26 @@
+/* application buttons */
+.btn.btn-app {
+  display: inline-block;
+  width: 120px;
+  margin: 2px;
+  position: relative;
+  font-size: 22px;
+  font-weight: normal;
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0 -1px -1px rgba(0, 0, 0, 0.2) !important;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 0 8px;
+}
+.btn.btn-app > [class*=fa] {
+  display: block;
+  font-size: 28px;
+  margin: 0 0 4px;
+  line-height: 36px;
+  min-width: 0;
+  padding: 0;
+}
+.btn.btn-app.no-radius {
+  border-radius: 0;
+}

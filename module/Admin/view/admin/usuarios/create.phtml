@@ -1,0 +1,21 @@
+<div class="col-md-12">
+    <h3>Novo Usuário</h3>
+    <?php
+        echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('usr_id'));
+            echo $this->elementToRow($form->get('usr_nome'));
+            echo $this->elementToRow($form->get('usr_email'));
+            echo $this->elementToRow($form->get('usr_telefone'));
+            echo $this->elementToRow($form->get('usr_usuario'));
+            echo $this->elementToRow($form->get('usr_senha'));
+            echo $this->formSubmit($form->get('submit'));
+        echo $this->form()->closeTag();
+    ?>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        console.log($('input[name=usr_telefone]'));
+        $('input[name=usr_telefone]').mask('(99)9999-9999');
+    })
+</script>

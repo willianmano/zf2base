@@ -1,0 +1,28 @@
+<div class="col-md-12">
+    <h3>Atualizar Permissão</h3>
+    <?php
+        echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('prm_id'));
+            echo $this->elementToRow($form->get('prm_modulo'));
+            echo $this->elementToRow($form->get('prm_rcs_id'));
+            echo $this->elementToRow($form->get('prm_nome'));
+            echo $this->elementToRow($form->get('prm_descricao'));
+            echo $this->formSubmit($form->get('submit'));
+        echo $this->form()->closeTag();
+    ?>
+</div>
+
+<script type="text/javascript">
+    $("#prm_modulo").change(function(e){
+        var recursos = $("#prm_rcs_id");
+        var id = $("#prm_modulo").val();
+
+        $.getJSON( "/admin/async/getrecursosbymoduloid/" + id, function( res ){
+          recursos.empty();
+          recursos.append("<option>Escolha um recurso</option>");
+          for(var i in res) {
+            recursos.append("<option value='"+res[i]['rcs_id']+"'>"+res[i]['rcs_nome']+"</option>");
+          }
+        });
+    });
+</script>

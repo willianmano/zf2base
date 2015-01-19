@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>Atribuir Perfil ao Usuário</h3>
+        <p>Usuário: <b><?php echo $this->usuario->usr_nome; ?></b></p>
+
+        <h5>Atribuir novo perfil</h5>
+
+        <div style="margin-bottom: 5px;">
+            <input type="hidden" id="usuarioId" value="<?php echo $this->usuario->usr_id; ?>">
+
+            <select name="modulo" id="modulo" class="form-control" style="width: 150px; display: inline;">
+                <option>Escolha o módulo</option>
+                <?php
+                    foreach ($this->modulos as $key => $value) {
+                        echo "<option value='".$value->mod_id."'>".$value->mod_nome."</option>";
+                    }
+                ?>
+            </select>
+            
+            <select name="perfis" id="perfis" class="form-control" style="display:none;width: 150px;"></select>
+            
+            <a class="btn btn-info" href="#" id="btnSalvar" style="margin-bottom: 3px; display:none;"><i class="icon-plus-sign icon-white"></i> Adcionar Perfil</a>
+
+        </div>
+
+        <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Perfil</th>
+                        <th>Descrição do perfil</th>
+                        <th style="width:27px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                        foreach ($this->usuarioPerfis as $key => $value) {
+                            echo "<tr>";
+                            echo    "<td>".$value->prf_id."</td>";
+                            echo    "<td>".$value->prf_nome."</td>";
+                            echo    "<td>".$value->prf_descricao."</td>";
+                            echo    "<td>
+                                        <a class='btn btn-mini btn-danger btn-window-confirm' href='#'
+                                            data-perfilid='".$value->prf_id."'
+                                            data-usuarioid='".$this->usuario->usr_id."'>
+                                                <i class='fa fa-trash-o'></i>
+                                        </a>
+                                    </td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+    </div>
+</div>
+<?php
+$this->inlineScript()->captureStart();
+echo <<<JS
+    $(".btn-window-confirm").click(function(e){
+        var perfilid = $(e.currentTarget).data('perfilid');
+        var usuarioid = $(e.currentTarget).data('usuarioid');
+        bootbox.confirm("Você tem certeza que deseja desvincular esse perfil do usuário?", function(result) {
+            if (result)
+            {
+                window.location.href = '/admin/perfisusuarios/delete/' + usuarioid + '/' + perfilid;
+            }
+        });
+    });
+
+    $("#modulo").change(function(e){
+        var perfis = $("#perfis");
+        var id = $("#modulo").val();
+
+        $.getJSON( "/admin/async/getperfisbymoduloid/" + id, function( res ){
+          perfis.empty();
+          perfis.append("<option>Escolha um perfil</option>");
+          for(var i in res) {
+            perfis.append("<option value='"+res[i].prf_id+"'>"+res[i].prf_nome+"</option>");
+          }
+          perfis.css('display', 'inline');
+          // habilita o botao
+          $("#btnSalvar").show();
+        });
+    });
+
+    $("#btnSalvar").click(function(){
+        var estilo = $("#perfis").css('display');
+        var usuarioid = parseInt($("#usuarioId").val());
+        var perfilid = parseInt($("#perfis").val());
+
+        console.log('usuario: ' + usuarioid + ' perfil: ' + perfilid);
+
+        if (estilo != 'none' && usuarioid > 0 && perfilid > 0) {
+            window.location.href = '/admin/perfisusuarios/atribuirperfilusuario/' + usuarioid + '/' + perfilid;
+        }
+    });
+JS;
+$this->inlineScript()->captureEnd();
+?>

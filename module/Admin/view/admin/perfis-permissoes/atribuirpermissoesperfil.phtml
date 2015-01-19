@@ -1,0 +1,44 @@
+<div class="col-md-12">
+    <h3>Atribuir permissões ao Perfil</h3>
+    <p>Perfil: <b><?php echo $this->perfil->prf_nome; ?></b>  | Módulo: <b><?php echo $this->perfil->mod_nome; ?></b></p>
+
+    <!-- <pre> -->
+        <?php //print_r($this->permissoes); ?>
+
+    <form method="POST" action="/admin/perfispermissoes/salvarpermissoesperfil">
+        <input type="hidden" name="prf_id" value="<?php echo $this->perfil->prf_id; ?>">
+        <input type="hidden" name="mod_id" value="<?php echo $this->perfil->mod_id; ?>">
+        <div class="panel-group" id="accordion">
+            <?php
+                foreach ($this->permissoes as $key => $value) {
+                    echo "<div class='panel panel-default'>";
+                        echo "<div class='panel-heading'>";
+                            echo "<h4 class='panel-title'>";
+                                echo "<a data-toggle='collapse' data-parent='#accordion' href='#collapse".$value['rcs_id']."'>";
+                                    echo '# ' . $value['rcs_id'] . ' - ' . $value['rcs_nome'];
+                                echo "</a>";
+                            echo "</h4>";
+                        echo "</div>";
+                        echo "<div id='collapse".$value['rcs_id']."' class='panel-collapse collapse'>";
+                            echo "<div class='panel-body'>";
+                                foreach ($value['permissoes'] as $k => $v) {
+                                    $checked = $v['habilitado'] != 0 ? "checked='checked'" : '';
+                                    echo "<label class='checkbox'>";
+                                        echo "<input name='permissoes[]' ".$checked." type='checkbox' value='".$v['prm_id']."'> " . $v['prm_nome'];
+                                    echo "</label>";
+                                }
+                            echo "</div>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+            ?>
+        </div>
+
+        <?php
+            if (sizeof($this->permissoes)) {
+                echo "<input type='submit' name='submit' class='btn btn-info' value='Salvar'>";
+            }
+        ?>
+
+    </form>
+</div>

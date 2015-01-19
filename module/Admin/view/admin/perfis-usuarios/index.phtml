@@ -1,0 +1,32 @@
+<?php
+    if (sizeof($this->menuButtons))
+        $this->menuBar($this->menuButtons);
+?>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Usuário</th>
+                    <th style="width:95px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                    foreach ($this->usuarios as $key => $value) {
+                        echo "<tr>";
+                        echo    "<td>".$value->usr_id."</td>";
+                        echo    "<td>".$value->usr_nome."</td>";
+                        echo    "<td>
+                                    <a class='btn btn-mini btn-success' href='/admin/perfisusuarios/gerenciarperfisusuario/".$value->usr_id."'>
+                                        <i class='icon-ok-sign'> Atribuir Perfil</i>
+                                    </a>
+                                </td>";
+                    }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
